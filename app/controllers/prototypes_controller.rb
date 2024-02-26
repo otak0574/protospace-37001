@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, except: [:new, :edit,:show, :destroy, :index]
-  before_action :move_to_registration, except: [:index, :show]
+  before_action :move_to_session, except: [:index, :show]
   before_action :set_prototype, only: [:edit, :show, :update, :destroy]
 
 
@@ -54,9 +54,9 @@ class PrototypesController < ApplicationController
     @prototype = Prototype.find(params[:id])
   end
 
-  def move_to_registration
+  def move_to_session
   unless user_signed_in?
-    redirect_to new_user_registration_path
+    redirect_to new_user_session_path
   end
 end
 end
